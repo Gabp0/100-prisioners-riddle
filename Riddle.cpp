@@ -79,3 +79,30 @@ void Riddle::solveRandom()
         }
     }
 }
+
+bool Riddle::checkFree()
+{
+    for (bool prisioner : this->prisioners)
+        if (!prisioner)
+            return false;
+
+    return true;
+}
+
+void Riddle::solveLoop()
+{
+    for (size_t i = BOX_MIN; i <= BOX_MAX; i++)
+    {
+        int nextBox = i;
+        for (size_t j = 0; j < 50; j++)
+        {
+            if (this->boxes[nextBox] == i)
+            {
+                this->prisioners[i] = true;
+                break;
+            }
+
+            nextBox = this->boxes[nextBox];
+        }
+    }
+}
