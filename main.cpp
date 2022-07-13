@@ -21,5 +21,5 @@ int main(int argc, char const *argv[])
             loopSolved++;
     }
 
-    cout << "Loop: " << loopSolved << ", Random: " << randomSolved << endl;
+    cout << "Loop: " << loopSolved << "/1000, Random: " << randomSolved << "/1000" << endl;
 }

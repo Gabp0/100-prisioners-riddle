@@ -8,8 +8,8 @@ Riddle::Riddle()
     this->boxes.reserve(BOX_MAX + 1);
     this->prisioners.reserve(BOX_MAX + 1);
 
-    std::fill(this->boxes.begin(), this->boxes.end(), 0);
-    std::fill(this->prisioners.begin(), this->prisioners.end(), false);
+    std::fill_n(this->boxes.begin(), BOX_MAX + 1, 0);
+    std::fill_n(this->prisioners.begin(), BOX_MAX + 1, false);
 
     this->fillBoxes();
 }
@@ -35,7 +35,8 @@ void Riddle::fillBoxes()
 
 void Riddle::rearrange()
 {
-    std::fill(this->boxes.begin(), this->boxes.end(), 0);
+    std::fill_n(this->boxes.begin(), BOX_MAX + 1, 0);
+    std::fill_n(this->prisioners.begin(), BOX_MAX + 1, false);
     this->fillBoxes();
 }
 
@@ -82,10 +83,11 @@ void Riddle::solveRandom()
 
 bool Riddle::checkFree()
 {
-    for (bool prisioner : this->prisioners)
-        if (!prisioner)
+    for (size_t i = BOX_MIN; i <= BOX_MAX; i++)
+    {
+        if (!this->prisioners[i])
             return false;
-
+    }
     return true;
 }
 
